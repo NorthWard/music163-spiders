@@ -40,9 +40,9 @@ def AESencrypt(msg, key):
     # 用来加密或者解密的初始向量(必须是16位)
     iv = '0102030405060708'
 
-    cipher = AES.new(key, AES.MODE_CBC, iv)
+    cipher = AES.new(bytes(key, encoding="utf-8"), AES.MODE_CBC, bytes(iv, encoding="utf-8"))
     # 加密后得到的是bytes类型的数据
-    encryptedbytes = cipher.encrypt(msg)
+    encryptedbytes = cipher.encrypt(bytes(msg, encoding="utf-8"))
     # 使用Base64进行编码,返回byte字符串
     encodestrs = base64.b64encode(encryptedbytes)
     # 对byte字符串按utf-8进行解码
